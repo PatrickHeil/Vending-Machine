@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Capstone
 {
-    class Beverage
+    public class Beverage: Product
     {
     }
 }
