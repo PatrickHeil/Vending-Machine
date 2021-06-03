@@ -28,12 +28,12 @@ namespace Capstone
                         for (int i = 0; i < snacks.Length; i++)
                         {
                         
-                        snackProduct.SlotId = snacks[i];
-                        snackProduct.ProductName = snacks[i + 1];
-                        string decimalConversion = snacks[i + 2];
+                        //snackProduct.SlotId = snacks[i];
+                        //snackProduct.ProductName = snacks[1];
+                        //string decimalConversion = snacks[2];
                         //snackProduct.Price = decimal.Parse(decimalConversion);
-                        snackProduct.ProductType = snacks[i + 3];
-                        snackers.Add(snackProduct.ProductName);
+                        //snackProduct.ProductType = snacks[3];
+                        snackers.Add(snacks[i]);
                     }
 
 
@@ -41,11 +41,11 @@ namespace Capstone
 
                     } 
                 }
-            //foreach (string turd in snackers)
-            //{
-            //    Console.WriteLine(turd);
-            //}
-            
+            foreach (string turd in snackers)
+            {
+                Console.WriteLine(turd);
+            }
+
             Console.WriteLine("Hello World!");
             //Menu
 
