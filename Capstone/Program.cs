@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Capstone
@@ -8,18 +9,14 @@ namespace Capstone
         static void Main(string[] args)
         {
 
-
-
             //string directory = "C:\\Users\\Student\\git\\dotnet - capstone - 1 - team - 4\\vendingmachine.csv";
             //string filename = "vendingmachine.csv";
-
-
             //string fullPath = Path.Combine(directory, filename);
 
             string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
 
-            string[] productProperties = new string[4];
-
+            List<string> productProperties = new List<string>();
+            
             try
             {
                 using (StreamReader sr = new StreamReader(fullPath))
@@ -27,21 +24,22 @@ namespace Capstone
                     while (!sr.EndOfStream)
                     {
                         string line = sr.ReadLine();
-                        string[] snacks = line.Split('|');
+                        //string[] snacks = line.Split('|');
 
                         // Add each value to product properties array
-                        productProperties = snacks;
+                        
+                        productProperties.Add(line);
 
                     } //go to the next line until the end is reached
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(productProperties);
+                
                 Console.WriteLine(ex.Message);
             }
 
-
+             Console.WriteLine(productProperties);
 
 
             Console.WriteLine("Hello World!");
