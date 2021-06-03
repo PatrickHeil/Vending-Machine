@@ -8,6 +8,7 @@ namespace CapstoneTests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }

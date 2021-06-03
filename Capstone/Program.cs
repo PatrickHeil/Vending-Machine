@@ -18,7 +18,8 @@ namespace Capstone
 
             string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
 
-            string[] productProperties = new string[4];
+
+            Product snackProduct = new Product();
 
             try
             {
@@ -29,15 +30,17 @@ namespace Capstone
                         string line = sr.ReadLine();
                         string[] snacks = line.Split('|');
 
-                        // Add each value to product properties array
-                        productProperties = snacks;
+                        snackProduct.SlotId = snacks[0];
+                        snackProduct.ProductName = snacks[1];
+                        string decimalConversion = snacks[2];
+                        snackProduct.Price = decimal.Parse(decimalConversion);
+                        snackProduct.ProductType = snacks[3];
 
-                    } //go to the next line until the end is reached
+                    } 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(productProperties);
                 Console.WriteLine(ex.Message);
             }
 
