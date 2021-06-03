@@ -8,14 +8,7 @@ namespace Capstone
     {
         public decimal Balance { get; set; }
 
-        public Dictionary<string, int> ProductAndQuantity
-        {
-            get
-            {
-                
-
-            }
-        }
+        public Dictionary<string, int> ProductAndQuantity { get; }
 
     }
 }

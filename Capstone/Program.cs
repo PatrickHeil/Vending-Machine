@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Capstone
@@ -18,8 +19,9 @@ namespace Capstone
 
             string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
 
-
+            
             Product snackProduct = new Product();
+            List<Product> productList = new List<Product>();
 
             try
             {
@@ -35,13 +37,17 @@ namespace Capstone
                         string decimalConversion = snacks[2];
                         snackProduct.Price = decimal.Parse(decimalConversion);
                         snackProduct.ProductType = snacks[3];
-
+                        productList.Add(snackProduct);
                     } 
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            foreach(Product snack in productList)
+            {
+                Console.WriteLine(snack.ProductName);
             }
 
 
