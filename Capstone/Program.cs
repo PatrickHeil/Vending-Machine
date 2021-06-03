@@ -9,22 +9,24 @@ namespace Capstone
         static void Main(string[] args)
         {
 
-
-
             //string directory = "C:\\Users\\Student\\git\\dotnet - capstone - 1 - team - 4\\vendingmachine.csv";
             //string filename = "vendingmachine.csv";
-
-
             //string fullPath = Path.Combine(directory, filename);
 
             string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
 
+<<<<<<< HEAD
             
             Product snackProduct = new Product();
             List<Product> productList = new List<Product>();
 
             try
             {
+=======
+            List<string> snackers = new List<string>();
+            Product snackProduct = new Product();
+                    
+>>>>>>> 685dddbf992ab1ff9c6c22ec08211db4ef9a7d7e
                 using (StreamReader sr = new StreamReader(fullPath))
                 {
                     while (!sr.EndOfStream)
@@ -32,6 +34,7 @@ namespace Capstone
                         string line = sr.ReadLine();
                         string[] snacks = line.Split('|');
 
+<<<<<<< HEAD
                         snackProduct.SlotId = snacks[0];
                         snackProduct.ProductName = snacks[1];
                         string decimalConversion = snacks[2];
@@ -49,10 +52,29 @@ namespace Capstone
             {
                 Console.WriteLine(snack.ProductName);
             }
+=======
+                        for (int i = 0; i < snacks.Length; i++)
+                        {
+                        
+                        snackProduct.SlotId = snacks[i];
+                        snackProduct.ProductName = snacks[i + 1];
+                        string decimalConversion = snacks[i + 2];
+                        //snackProduct.Price = decimal.Parse(decimalConversion);
+                        snackProduct.ProductType = snacks[i + 3];
+                        snackers.Add(snackProduct.ProductName);
+                    }
+>>>>>>> 685dddbf992ab1ff9c6c22ec08211db4ef9a7d7e
 
 
 
 
+                    } 
+                }
+            //foreach (string turd in snackers)
+            //{
+            //    Console.WriteLine(turd);
+            //}
+            
             Console.WriteLine("Hello World!");
             //Menu
 
