@@ -4,7 +4,18 @@ using System.Text;
 
 namespace Capstone
 {
-    class VendingMachine
+    public class VendingMachine
     {
+        public decimal Balance { get; set; }
+
+        public Dictionary<string, int> ProductAndQuantity
+        {
+            get;
+            
+                
+
+            
+        }
+
     }
 }

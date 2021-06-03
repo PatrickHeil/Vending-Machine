@@ -15,33 +15,37 @@ namespace Capstone
 
             string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
 
-            List<string> productProperties = new List<string>();
-            
-            try
-            {
+            List<string> snackers = new List<string>();
+            Product snackProduct = new Product();
+                    
                 using (StreamReader sr = new StreamReader(fullPath))
                 {
                     while (!sr.EndOfStream)
                     {
                         string line = sr.ReadLine();
-                        //string[] snacks = line.Split('|');
+                        string[] snacks = line.Split('|');
 
-                        // Add each value to product properties array
+                        for (int i = 0; i < snacks.Length; i++)
+                        {
                         
-                        productProperties.Add(line);
+                        snackProduct.SlotId = snacks[i];
+                        snackProduct.ProductName = snacks[i + 1];
+                        string decimalConversion = snacks[i + 2];
+                        //snackProduct.Price = decimal.Parse(decimalConversion);
+                        snackProduct.ProductType = snacks[i + 3];
+                        snackers.Add(snackProduct.ProductName);
+                    }
 
-                    } //go to the next line until the end is reached
+
+
+
+                    } 
                 }
-            }
-            catch (Exception ex)
-            {
-                
-                Console.WriteLine(ex.Message);
-            }
-
-             Console.WriteLine(productProperties);
-
-
+            //foreach (string turd in snackers)
+            //{
+            //    Console.WriteLine(turd);
+            //}
+            
             Console.WriteLine("Hello World!");
             //Menu
 
