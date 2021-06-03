@@ -6,5 +6,6 @@ namespace Capstone.Classes
 {
     public class Gum : Product 
     {
+
     }
 }
