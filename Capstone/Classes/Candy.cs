@@ -6,5 +6,6 @@ namespace Capstone
 {
     public class Candy: Product
     {
+
     }
 }
