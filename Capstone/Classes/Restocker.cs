@@ -7,12 +7,13 @@ namespace Capstone.Classes
 {
     class Restocker: Product
     {
+
+        public int Quantity { get; set; }
+
         public Restocker()
         {
 
         }
-
-        
 
         public Dictionary<Product, int> Inventory()
         {
