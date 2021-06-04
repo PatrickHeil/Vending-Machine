@@ -9,18 +9,17 @@ namespace Capstone
     {
         public decimal Balance { get; } = 0;
 
-
-
         public Dictionary<Product, int> Inventory { get; set; }
 
         public int Quantity
         {
             get
             {
-                foreach(KeyValuePair value in Inventory)
+                foreach (KeyValuePair<Product, int> kvp in Inventory)
                 {
-                    value.Key = this.Quantity;
+                    return kvp.Value;
                 }
+                return 0;
             }
         }
 
@@ -29,9 +28,8 @@ namespace Capstone
 
         }
 
-        public VendingMachine(Dictionary<Product, int> inventory, decimal balance)
+        public VendingMachine(Dictionary<Product, int> inventory)
         {
-            this.Balance = balance;
             this.Inventory = inventory;
         }
 
