@@ -70,6 +70,8 @@ namespace Capstone
 
                                     string stringCurrentCash = Console.ReadLine();
                                     currentCash += decimal.Parse(stringCurrentCash);
+
+                                    //write to Log.txt
                                     log.FeedWriter(stringCurrentCash, currentCash.ToString());
 
                                     Console.WriteLine($"Your current balance is: ${currentCash}");
@@ -83,7 +85,11 @@ namespace Capstone
 
                                     foreach (KeyValuePair<Product, int> kvp in inventory)
                                     {
-                                        Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} {kvp.Key.Price} {kvp.Key.ProductType} quantity: {kvp.Value}");
+                                        if(kvp.Value != 0)
+                                        {
+                                            Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} {kvp.Key.Price} {kvp.Key.ProductType} quantity: {kvp.Value}");
+                                        }
+                                        else Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} {kvp.Key.Price} {kvp.Key.ProductType} quantity: SOLD OUT");
                                     }
                                     string slotIdPick = Console.ReadLine();
 
@@ -98,7 +104,9 @@ namespace Capstone
 
                                                 if (kvp.Key.Price <= currentCash && kvp.Value > 0)
                                                 {
+                                                    //write to Log.txt
                                                     log.SaleWriter($"{kvp.Key.ProductName}", $"{kvp.Key.SlotId}", currentCash.ToString(), $"{currentCash - kvp.Key.Price}");
+
                                                     currentCash -= kvp.Key.Price;
                                                     int currentCount = 0;
                                                     inventory.TryGetValue(kvp.Key, out currentCount);
@@ -143,11 +151,6 @@ namespace Capstone
 
 
                                             }
-                                            else
-                                            {
-                                                Console.WriteLine("Invalid entry, please try again");
-                                                break;
-                                            }
                                         }
                                     }
 
@@ -158,7 +161,7 @@ namespace Capstone
                                     }
                                 }
 
-                                Console.ReadLine();
+                                //Console.ReadLine();
                                 break;
                             }
                             if (userSelection2 == "3")
@@ -170,17 +173,18 @@ namespace Capstone
                                 while (currentCash != 0)
                                 {
                                     log.ChangeWriter(currentCash.ToString()); //writing to Log.txt
+                                    
                                     if (currentCash >= .25M)
                                     {
                                         quarters = (int)(currentCash / .25M);
                                         currentCash -= quarters * .25M;
                                     }
-                                    else if (currentCash > .10M && currentCash < .25M)
+                                    else if (currentCash >= .10M && currentCash < .25M)
                                     {
                                         dimes = (int)(currentCash / .10M);
                                         currentCash -= dimes * .10M;
                                     }
-                                    else if (currentCash > .05M && currentCash < .10M)
+                                    else if (currentCash >= .05M && currentCash < .10M)
                                     {
                                         nickels = (int)(currentCash / .05M);
                                         currentCash -= nickels * .05M;
