@@ -18,104 +18,117 @@ namespace Capstone
 
 
             //Menu
-            /*
-            decimal currentCash = 14.70M;
 
-            //while ()
-            //{
-                Console.WriteLine("1: Display Vending Machine Items");
-                Console.WriteLine("2: Purchase items");
-                Console.WriteLine("3: Exit");
-                string userSelection = Console.ReadLine();
-                while (userSelection != "3")
+            decimal currentCash = 0M;
+
+            // while ()
+            // {
+            Console.WriteLine("1: Display Vending Machine Items");
+            Console.WriteLine("2: Purchase items");
+            Console.WriteLine("3: Exit");
+            string userSelection = Console.ReadLine();
+            while (userSelection != "3")
+            {
+                if (userSelection == "1")
                 {
-                    if (userSelection == "1")
+                    Console.Clear();
+                    foreach (KeyValuePair<Product, int> kvp in inventory)
                     {
-                        Console.Clear();
-                        for (int i = 0; i < productList.Count ; i++)
-                        {
-                            Console.WriteLine($"{productName}: {quantity} remaining");
-                        }
-                        Console.ReadLine();
+
+                        Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} {kvp.Key.Price} {kvp.Key.ProductType} quantity: {kvp.Value}");
                     }
-                    else if (userSelection == "2")
+
+                    Console.ReadLine();
+
+                }
+
+                else if (userSelection == "2")
+                {
+                    //while ()
+                    // {
+                    Console.Clear();
+                    Console.WriteLine("(1) Feed Money");
+                    Console.WriteLine("(2) Select Product");
+                    Console.WriteLine("(3) Finish Transaction");
+                    Console.WriteLine("Your Current money provided is: $" + currentCash);
+                    string userSelection2 = Console.ReadLine();
+                    while (userSelection2 != "4")
                     {
-                       // while ()
-                        //{
+                        if (userSelection2 == "1")
+                        {
                             Console.Clear();
-                            Console.WriteLine("(1) Feed Money");
-                            Console.WriteLine("(2) Select Product");
-                            Console.WriteLine("(3) Finish Transaction");
-                            Console.WriteLine("Your Current money provided is: $" + currentCash);
-                            string userSelection2 = Console.ReadLine();
-                            while (userSelection2 != "4")
+                            Console.WriteLine("Please feed the machine money in whole dollar amounts and enter 0 when you are finished");
+
+                            string stringCurrentCash = Console.ReadLine();
+                            while (stringCurrentCash != "0")
                             {
-                                if (userSelection2 == "1")
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine("Please feed the machine money in whole dollar amounts and enter 0 when you are finished");
-
-                                    string stringCurrentCash = Console.ReadLine();
-                                    while (stringCurrentCash != "0")
-                                    {
-                                        currentCash += decimal.Parse(stringCurrentCash);
-                                    }
-                                    Console.WriteLine($"Your current balance is: ${currentCash}");
-                                    Console.Read();
-                                }
-                                else if (userSelection2 == "2")
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine("Please choose a product from the following options by typing the slot ID");
-                                    for (int i = 0; i < productName.Count; i++)
-                                    {
-                                        Console.WriteLine($"{slotId[i]} {productName[i]} ${price[i]}: {quantity} remaining");
-                                    }
-                                    Console.ReadLine();
-
-                                }
-                                else if (userSelection2 == "3")
-                                {
-                                    Console.Clear();
-                                    int quarters = 0;
-                                    int dimes = 0;
-                                    int nickels = 0;
-                                    while (currentCash != 0)
-                                    {
-                                        if (currentCash >= .25M)
-                                        {
-                                            quarters = (int)(currentCash / .25M);
-                                            currentCash -= quarters * .25M;
-                                        }
-                                        else if (currentCash > .10M && currentCash < .25M)
-                                        {
-                                            dimes = (int)(currentCash / .10M);
-                                            currentCash -= dimes * .10M;
-                                        }
-                                        else if (currentCash > .05M && currentCash < .10M)
-                                        {
-                                            nickels = (int)(currentCash / .05M);
-                                            currentCash -= nickels * .05M;
-                                        }
-
-                                    }
-                                    Console.WriteLine($"Your change will be returned in {quarters} quarters, {dimes} dimes, and {nickels} nickles.");
+                                currentCash += decimal.Parse(stringCurrentCash);
+                            }
+                            Console.WriteLine($"Your current balance is: ${currentCash}");
                             Console.Read();
+                        }
+                        else if (userSelection2 == "2")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Please choose a product from the following options by typing the slot ID");
+
+
+                            foreach (KeyValuePair<Product, int> kvp in inventory)
+                            {
+
+                                Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} {kvp.Key.Price} {kvp.Key.ProductType} quantity: {kvp.Value}");
+
+                                string slotIdPick = Console.ReadLine();
+                                if (slotIdPick == kvp.Key.SlotId)
+                                {
+                                    kvp.Value--;
                                 }
                             }
-                       // }
-                    }
-                    else if (userSelection == "3")
-                    {
-                        Console.Clear();
+                            Console.ReadLine();
 
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid entry, please try again");
+                        }
+                        else if (userSelection2 == "3")
+                        {
+                            Console.Clear();
+                            int quarters = 0;
+                            int dimes = 0;
+                            int nickels = 0;
+                            while (currentCash != 0)
+                            {
+                                if (currentCash >= .25M)
+                                {
+                                    quarters = (int)(currentCash / .25M);
+                                    currentCash -= quarters * .25M;
+                                }
+                                else if (currentCash > .10M && currentCash < .25M)
+                                {
+                                    dimes = (int)(currentCash / .10M);
+                                    currentCash -= dimes * .10M;
+                                }
+                                else if (currentCash > .05M && currentCash < .10M)
+                                {
+                                    nickels = (int)(currentCash / .05M);
+                                    currentCash -= nickels * .05M;
+                                }
+
+                            }
+                            Console.WriteLine($"Your change will be returned in {quarters} quarters, {dimes} dimes, and {nickels} nickles.");
+                            Console.Read();
+                        }
                     }
                 }
-            }*/
+                //   }
+                else if (userSelection == "3")
+                {
+                    Console.Clear();
+
+                }
+                else
+                {
+                    Console.WriteLine("Invalid entry, please try again");
+                }
+                // }
+            }
 
 
 
