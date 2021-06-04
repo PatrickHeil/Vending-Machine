@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -8,11 +9,16 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            
-            VendingMachine vendingMachine = new VendingMachine();
+
+            Restocker restocker = new Restocker();
+            Dictionary<Product, int> inventory = restocker.Inventory();
+            VendingMachine vendingMachine = new VendingMachine(inventory, 0M);
+
+
+
 
             //Menu
-
+            /*
             decimal currentCash = 14.70M;
 
             //while ()
@@ -109,7 +115,7 @@ namespace Capstone
                         Console.WriteLine("Invalid entry, please try again");
                     }
                 }
-            }
+            }*/
 
 
 
@@ -130,7 +136,7 @@ namespace Capstone
             //Exits the program
         }
     }
-//}
+}
 
 
 
