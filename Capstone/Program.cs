@@ -7,61 +7,7 @@ namespace Capstone
     class Program
     {
         static void Main(string[] args)
-        { //Dictionary<string, string> displayItems = new Dictionary<string, string>();
-          //string directory = "C:\\Users\\Student\\git\\dotnet - capstone - 1 - team - 4\\vendingmachine.csv";
-          //string filename = "vendingmachine.csv";
-          //string fullPath = Path.Combine(directory, filename);
-            int quantity = 5;
-            //foreach (int itemSold in )
-            //{
-            //    quantity--;
-            //}
-            string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
-            Product snackProduct = new Product();
-            List<Product> productList = new List<Product>();
-            List<string> snackers = new List<string>();
-            List<string> slotId = new List<string>();
-            List<string> productName = new List<string>();
-            List<string> price = new List<string>();
-            List<string> productType = new List<string>();
-
-            using (StreamReader sr = new StreamReader(fullPath))
-            {
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-                    string[] snacks = line.Split('|');
-
-                    for (int i = 0; i < snacks.Length; i++)
-                    {
-
-                        //snackProduct.SlotId = snacks[i];
-                        //snackProduct.ProductName = snacks[1];
-                        //string decimalConversion = snacks[2];
-                        //snackProduct.Price = decimal.Parse(decimalConversion);
-                        //snackProduct.ProductType = snacks[3];
-                        snackers.Add(snacks[i]);
-                    }
-                }
-                for (int i = 0; i < snackers.Count; i += 4)
-                {
-                    slotId.Add(snackers[i]);
-                }
-                for (int i = 1; i < snackers.Count; i += 4)
-                {
-                    productName.Add(snackers[i]);
-                }
-                for (int i = 2; i < snackers.Count; i += 4)
-                {
-                    price.Add(snackers[i]);
-                }
-                for (int i = 3; i < snackers.Count; i += 4)
-                {
-                    productType.Add(snackers[i]);
-                }
-            }
-
-
+        {         
             //Menu
 
             decimal currentCash = 14.70M;
@@ -77,9 +23,9 @@ namespace Capstone
                     if (userSelection == "1")
                     {
                         Console.Clear();
-                        for (int i = 0; i < productName.Count; i++)
+                        for (int i = 0; i < productList.Count ; i++)
                         {
-                            Console.WriteLine($"{productName[i]}: {quantity} remaining");
+                            Console.WriteLine($"{productName}: {quantity} remaining");
                         }
                         Console.ReadLine();
                     }

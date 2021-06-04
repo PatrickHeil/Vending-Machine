@@ -4,8 +4,7 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    public class Gum : Product 
+    class Class1
     {
-
     }
 }

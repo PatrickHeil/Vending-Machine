@@ -6,11 +6,11 @@ namespace Capstone
 {
     public class VendingMachine
     {
-        public decimal Balance { get; set; }
+        public decimal Balance { get; }
+
+        public Dictionary<string, int> ProductAndQuantity { get; }
+
 
 
     }
 }
-        //public Dictionary<string, int> ProductAndQuantity { get; }
-
-    
