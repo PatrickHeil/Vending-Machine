@@ -6,10 +6,13 @@ namespace Capstone.Classes
 {
     public class Restocker
     {
-        public int Quantity { get; set; } = 5;
+
+        public int Quantity { get; set; }
+
         public Restocker()
         {
         }
+
         public Dictionary<Product, int> Inventory()
         {
             string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
