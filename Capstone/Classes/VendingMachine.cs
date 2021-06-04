@@ -13,23 +13,22 @@ namespace Capstone
 
         public int Quantity
         {
-            get;
-            //{
-            //    foreach(KeyValuePair value in Inventory)
-            //    {
-            //        value.Key = this.Quantity;
-            //    }
-            //}
+            get
+            {
+                foreach (KeyValuePair<Product, int> kvp in Inventory)
+                {
+                    return kvp.Value;
+                }
+                return 0;
+            }
         }
-
         public VendingMachine()
         {
 
         }
 
-        public VendingMachine(Dictionary<Product, int> inventory, decimal balance)
+        public VendingMachine(Dictionary<Product, int> inventory)
         {
-            this.Balance = balance;
             this.Inventory = inventory;
         }
 

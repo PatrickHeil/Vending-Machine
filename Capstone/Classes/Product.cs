@@ -10,8 +10,6 @@ namespace Capstone
 
         public string ProductName { get; set; }
 
-        public int Quantity { get; }
-
         public decimal Price { get; set; }
 
         public string ProductType { get; set; }
