@@ -11,18 +11,6 @@ namespace Capstone
 
         public Dictionary<Product, int> Inventory { get; set; }
 
-        public int Quantity
-        {
-            get
-            {
-                foreach (KeyValuePair<Product, int> kvp in Inventory)
-                {
-                    return kvp.Value;
-                }
-                return 0;
-            }
-        }
-
         public VendingMachine()
         {
 
