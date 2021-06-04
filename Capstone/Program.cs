@@ -13,6 +13,7 @@ namespace Capstone
             Restocker restocker = new Restocker();
             Dictionary<Product, int> inventory = restocker.Inventory();
             VendingMachine vendingMachine = new VendingMachine(inventory);
+            LogKeeper log = new LogKeeper();
 
 
 
@@ -69,7 +70,8 @@ namespace Capstone
 
                                     string stringCurrentCash = Console.ReadLine();
                                     currentCash += decimal.Parse(stringCurrentCash);
-                                    
+                                    log.FeedWriter(stringCurrentCash, currentCash.ToString());
+
                                     Console.WriteLine($"Your current balance is: ${currentCash}");
                                     Console.ReadLine();
                                     break;
@@ -83,57 +85,81 @@ namespace Capstone
                                     {
                                         Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} {kvp.Key.Price} {kvp.Key.ProductType} quantity: {kvp.Value}");
                                     }
-                                        string slotIdPick = Console.ReadLine();
-                                    bool hasEnough = false;
-                                    foreach (KeyValuePair<Product, int> kvp in inventory)
+                                    string slotIdPick = Console.ReadLine();
+
+
+                                    try
                                     {
-                                        if (slotIdPick == kvp.Key.SlotId)
+                                        foreach (KeyValuePair<Product, int> kvp in inventory)
                                         {
-                                            hasEnough = true;
-                                            if (kvp.Key.Price <= currentCash) { 
-                                            currentCash -= kvp.Key.Price;
-                                                //kvp.Value--;
+
+                                            if (slotIdPick == kvp.Key.SlotId)
+                                            {
+
+                                                if (kvp.Key.Price <= currentCash && kvp.Value > 0)
+                                                {
+                                                    log.SaleWriter($"{kvp.Key.ProductName}", $"{kvp.Key.SlotId}", currentCash.ToString(), $"{currentCash - kvp.Key.Price}");
+                                                    currentCash -= kvp.Key.Price;
+                                                    int currentCount = 0;
+                                                    inventory.TryGetValue(kvp.Key, out currentCount);
+                                                    inventory[kvp.Key] = currentCount - 1;
+                                                    if (slotIdPick.Contains("A"))
+                                                    {
+                                                        //CHIP
+                                                        Console.WriteLine("Crunch Crunch, Yum!");
+                                                        Console.ReadLine();
+                                                    }
+                                                    else if (slotIdPick.Contains("B"))
+                                                    {
+                                                        //CANDY 
+                                                        Console.WriteLine("Munch Munch, Yum!");
+                                                        Console.ReadLine();
+                                                    }
+                                                    else if (slotIdPick.Contains("C"))
+                                                    {
+                                                        //DRINK"Glug Glug, Yum!"
+                                                        Console.WriteLine("Glug Glug, Yum!");
+                                                        Console.ReadLine();
+                                                    }
+                                                    else if (slotIdPick.Contains("D"))
+                                                    {
+                                                        //GUM"Chew Chew, Yum!"
+                                                        Console.WriteLine("Chew Chew, Yum!");
+                                                        Console.ReadLine();
+                                                    }
+
+
+                                                }
+                                                else if (kvp.Value == 0)
+                                                {
+
+                                                    Console.WriteLine("SOLD OUT");
+                                                    break;
+                                                }
+                                                else if (kvp.Key.Price > currentCash)
+                                                {
+                                                    Console.WriteLine("Please enter more cash");
+                                                }
+
+
                                             }
                                             else
                                             {
-                                                hasEnough = false;
+                                                Console.WriteLine("Invalid entry, please try again");
+                                                break;
                                             }
-                                            
                                         }
                                     }
-                                    if (hasEnough == true && slotIdPick.Contains("A"))
-                                    {
-                                        //CHIP
-                                        Console.WriteLine("Crunch Crunch, Yum!");
-                                    }
-                                    else if (hasEnough == true && slotIdPick.Contains("B"))
-                                    {
-                                        //CANDY 
-                                        Console.WriteLine("Munch Munch, Yum!");
-                                    }
-                                    else if (hasEnough == true && slotIdPick.Contains("C"))
-                                    {
-                                        //DRINK"Glug Glug, Yum!"
-                                        Console.WriteLine("Glug Glug, Yum!");
-                                    }
-                                    else if (hasEnough == true && slotIdPick.Contains("D"))
-                                    {
-                                        //GUM"Chew Chew, Yum!"
-                                        Console.WriteLine("Chew Chew, Yum!");
-                                    }
-                                    else if (hasEnough == false)
-                                    {
-                                        Console.WriteLine("Please try again");
-                                    }
-                                    Console.ReadLine();
-                                    break;
 
+                                    catch (Exception ex)
+                                    {
+
+                                        // break;
+                                    }
                                 }
-                                else 
-                                {
-                                    Console.WriteLine("Invalid entry, please try again");
-                                    break;
-                                }
+
+                                Console.ReadLine();
+                                break;
                             }
                             if (userSelection2 == "3")
                             {
@@ -143,6 +169,7 @@ namespace Capstone
                                 int nickels = 0;
                                 while (currentCash != 0)
                                 {
+                                    log.ChangeWriter(currentCash.ToString()); //writing to Log.txt
                                     if (currentCash >= .25M)
                                     {
                                         quarters = (int)(currentCash / .25M);
@@ -165,7 +192,7 @@ namespace Capstone
                                 main2 = false;
                                 break;
                             }
-                            
+
                         }
                         break;
                     }
@@ -175,32 +202,32 @@ namespace Capstone
                         Console.WriteLine("Invalid entry, please try again");
                         break;
                     }
-                    }
-                    if (userSelection == "3")
-                    {
-                        Console.Clear();
-                        main = false;
-                    }
-
-                    //In 1 -Main
-                    // Display all items and how many are left.
-
-
-                    //In 2 -Main
-                    //1- Feed money - Whole dollar amounts and repeats  ... print to Log.txt
-                    //2- Select Product - same as display but with cost amount and code.... print to Log.txt
-                    //if they type wrong, .Clear, .writeline does not exist. return to menu
-                    //3-Finish Tranny- return change in smallest amount of COINS possible ...prints to Log.txt
-
-                    //Show balance on this screen and give change before going back to main menu
-
-                    //In 3 -Main
-                    //Exits the program
-
                 }
+                if (userSelection == "3")
+                {
+                    Console.Clear();
+                    main = false;
+                }
+
+                //In 1 -Main
+                // Display all items and how many are left.
+
+
+                //In 2 -Main
+                //1- Feed money - Whole dollar amounts and repeats  ... print to Log.txt
+                //2- Select Product - same as display but with cost amount and code.... print to Log.txt
+                //if they type wrong, .Clear, .writeline does not exist. return to menu
+                //3-Finish Tranny- return change in smallest amount of COINS possible ...prints to Log.txt
+
+                //Show balance on this screen and give change before going back to main menu
+
+                //In 3 -Main
+                //Exits the program
+
             }
         }
     }
+}
 
 
 

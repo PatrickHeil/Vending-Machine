@@ -14,10 +14,10 @@ namespace Capstone.Classes
 
         public DateTime DateTime { get; }
 
-        public void SaleWriter(string productName, string slotId, decimal currentBalance, decimal balanceAfterPurchase)
+        public void SaleWriter(string productName, string slotId, string currentBalance, string balanceAfterPurchase)
         {
             string fileName = "Log.txt";
-            string dateTime = DateTime.ToString();
+            string dateTime = DateTime.Now.ToString();
             try
             {
                 using (StreamWriter sw = new StreamWriter(fileName, true))
@@ -31,10 +31,10 @@ namespace Capstone.Classes
             }
         }
 
-        public void FeedWriter(decimal moneyInserted, decimal currentBalance)
+        public void FeedWriter(string moneyInserted, string currentBalance)
         {
             string fileName = "Log.txt";
-            string dateTime = DateTime.ToString();
+            string dateTime = DateTime.Now.ToString();
             try
             {
                 using (StreamWriter sw = new StreamWriter(fileName, true))
@@ -48,10 +48,10 @@ namespace Capstone.Classes
             }
         }
 
-        public void ChangeWriter(decimal moneyRemaining)
+        public void ChangeWriter(string moneyRemaining)
         {
             string fileName = "Log.txt";
-            string dateTime = DateTime.ToString();
+            string dateTime = DateTime.Now.ToString();
             try
             {
                 using (StreamWriter sw = new StreamWriter(fileName, true))
