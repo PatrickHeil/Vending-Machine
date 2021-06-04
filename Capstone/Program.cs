@@ -164,122 +164,117 @@ namespace Capstone
             Dictionary<Product, int> inventory = restocker.Inventory();
             LogKeeper log = new LogKeeper();
             Console.WriteLine("Please choose a product from the following options by typing the slot ID");
+
+
+
             
 
             foreach (KeyValuePair<Product, int> kvp in inventory)
             {
-                int values = kvp.Value;
+                //int values = kvp.Value;
+                foreach (KeyValuePair<Product, int> k in inventory)
+                {
+                
                 if (kvp.Value != 0)
                 {
-                    Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} {kvp.Key.Price} {kvp.Key.ProductType} quantity: {kvp.Value}");
+                    Console.WriteLine($"{k.Key.SlotId} {k.Key.ProductName} {k.Key.Price} {k.Key.ProductType} quantity: {k.Value}");
                 }
-                else Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} {kvp.Key.Price} {kvp.Key.ProductType} quantity: SOLD OUT");
-            }
-            string slotIdPick = Console.ReadLine();
+                else Console.WriteLine($"{k.Key.SlotId} {k.Key.ProductName} {k.Key.Price} {k.Key.ProductType} quantity: SOLD OUT");
 
+                }
 
-            try
-            {
-                foreach (KeyValuePair<Product, int> kvp in inventory)
+                string slotIdPick = Console.ReadLine();
+                if (slotIdPick.ToUpper() == kvp.Key.SlotId)
                 {
 
-                    if (slotIdPick.ToUpper() == kvp.Key.SlotId)
+                    if (kvp.Key.Price <= currentCash && kvp.Value > 0)
                     {
+                        //write to Log.txt
+                        log.SaleWriter($"{kvp.Key.ProductName}", $"{kvp.Key.SlotId}", currentCash.ToString(), $"{currentCash - kvp.Key.Price}");
 
-                        if (kvp.Key.Price <= currentCash && kvp.Key.Quantity > 0)
+                        currentCash -= kvp.Key.Price;
+
+                        //kvp.Value--;
+                        //kvp.Value = values;
+                        if (slotIdPick.ToUpper().Contains("A"))
                         {
-                            //write to Log.txt
-                            log.SaleWriter($"{kvp.Key.ProductName}", $"{kvp.Key.SlotId}", currentCash.ToString(), $"{currentCash - kvp.Key.Price}");
-
-                            currentCash -= kvp.Key.Price;
-                            int values = kvp.Value;
-                            values--;
-                            //kvp.Value = values;
-                            if (slotIdPick.ToUpper().Contains("A"))
-                            {
-                                Console.Clear();
+                            Console.Clear();
 
 
-                                Console.WriteLine("Crunch Crunch, Yum!");
-                                Console.ReadLine();
-                            }
-                            else if (slotIdPick.ToUpper().Contains("B"))
-                            {
-                                Console.Clear();
-
-                                Console.WriteLine(@"    ___ ___  ___ ___  ___.-------------- -.");
-                                Console.WriteLine(@" .'\__\'\__\'\__\'\__\'\__,`   .  ____ ___ \");
-                                Console.WriteLine(@" |\/ __\/ __\/ __\/ __\/ _:\   |`.  \  \___ \");
-                                Console.WriteLine(@" \\'\__\'\__\'\__\'\__\'\_`.__|''`. \  \___ \");
-                                Console.WriteLine(@" \\/ __\/ __\/ __\/ __\/ __:                \");
-                                Console.WriteLine(@" \\'\__\'\__\'\__\ \__\'\_;-----------------`");
-                                Console.WriteLine(@" \\/   \/   \/   \/   \/  :                 |");
-                                Console.WriteLine(@" \| ______________________; ________________|");
-                                  Console.WriteLine();
-                                Console.WriteLine("Munch Munch, Yum!");
-                                Console.ReadLine();
-                            }
-                            else if (slotIdPick.ToUpper().Contains("C"))
-                            {
-                                Console.Clear();
-                                //Console.WriteLine(@"           .e$.                           z$$e.d$$$.      z$b   z");
-                                //Console.WriteLine(@"          d$' .d                       .$$''d'F ^ *$$$e  z$' $ .$'");
-                                //Console.WriteLine(@"        e$P    $%                    d$P .'  F    '$$'d$  .e$'");
-                                //Console.WriteLine(@"       $$F                         .$$'  F  J       '$$z$$$'");
-                                //Console.WriteLine(@"     .$$'     .$'3 .$''  .$P $$  $$ 4$$ $  4'     $$  .");
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                //Console.WriteLine();     
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                //Console.WriteLine();
-                                Console.WriteLine("Glug Glug, Yum!");
-                                Console.ReadLine();
-                            }
-                            else if (slotIdPick.ToUpper().Contains("D"))
-                            {
-                                Console.Clear();
-                                Console.WriteLine(@"                      ____");
-                                Console.WriteLine(@"          ___       .' /:::.      ___");
-                                Console.WriteLine(@"          \  ' -.  / (:::-' \  .-'  /");
-                                Console.WriteLine(@"           >_-=.\/:\__\/__   \/.=-_<");
-                                Console.WriteLine(@"           > -= '/\::::/\:::\/\'=- <");
-                                Console.WriteLine(@"          / __.-'  \: :' )::/  '-.__\");
-                                Console.WriteLine(@"                    '.__/::'");
-                                Console.WriteLine();
-                                Console.WriteLine("Chew Chew, Yum!");
-                                Console.ReadLine();
-                            }
-
-
+                            Console.WriteLine("Crunch Crunch, Yum!");
+                            Console.ReadLine();
                         }
-                        else if (kvp.Value == 0)
+                        else if (slotIdPick.ToUpper().Contains("B"))
                         {
+                            Console.Clear();
 
-                            Console.WriteLine("SOLD OUT");
-                            break;
+                            Console.WriteLine(@"    ___ ___  ___ ___  ___.-------------- -.");
+                            Console.WriteLine(@" .'\__\'\__\'\__\'\__\'\__,`   .  ____ ___ \");
+                            Console.WriteLine(@" |\/ __\/ __\/ __\/ __\/ _:\   |`.  \  \___ \");
+                            Console.WriteLine(@" \\'\__\'\__\'\__\'\__\'\_`.__|''`. \  \___ \");
+                            Console.WriteLine(@" \\/ __\/ __\/ __\/ __\/ __:                \");
+                            Console.WriteLine(@" \\'\__\'\__\'\__\ \__\'\_;-----------------`");
+                            Console.WriteLine(@" \\/   \/   \/   \/   \/  :                 |");
+                            Console.WriteLine(@" \| ______________________; ________________|");
+                            Console.WriteLine();
+                            Console.WriteLine("Munch Munch, Yum!");
+                            Console.ReadLine();
                         }
-                        else if (kvp.Key.Price > currentCash)
+                        else if (slotIdPick.ToUpper().Contains("C"))
                         {
-                            Console.WriteLine("Please enter more cash");
+                            Console.Clear();
+                            //Console.WriteLine(@"           .e$.                           z$$e.d$$$.      z$b   z");
+                            //Console.WriteLine(@"          d$' .d                       .$$''d'F ^ *$$$e  z$' $ .$'");
+                            //Console.WriteLine(@"        e$P    $%                    d$P .'  F    '$$'d$  .e$'");
+                            //Console.WriteLine(@"       $$F                         .$$'  F  J       '$$z$$$'");
+                            //Console.WriteLine(@"     .$$'     .$'3 .$''  .$P $$  $$ 4$$ $  4'     $$  .");
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine();     
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            //Console.WriteLine();
+                            Console.WriteLine("Glug Glug, Yum!");
+                            Console.ReadLine();
+                        }
+                        else if (slotIdPick.ToUpper().Contains("D"))
+                        {
+                            Console.Clear();
+                            Console.WriteLine(@"                      ____");
+                            Console.WriteLine(@"          ___       .' /:::.      ___");
+                            Console.WriteLine(@"          \  ' -.  / (:::-' \  .-'  /");
+                            Console.WriteLine(@"           >_-=.\/:\__\/__   \/.=-_<");
+                            Console.WriteLine(@"           > -= '/\::::/\:::\/\'=- <");
+                            Console.WriteLine(@"          / __.-'  \: :' )::/  '-.__\");
+                            Console.WriteLine(@"                    '.__/::'");
+                            Console.WriteLine();
+                            Console.WriteLine("Chew Chew, Yum!");
+                            Console.ReadLine();
                         }
 
 
                     }
+                    else if (kvp.Value == 0)
+                    {
+
+                        Console.WriteLine("SOLD OUT");
+                        break;
+                    }
+                    else if (kvp.Key.Price > currentCash)
+                    {
+                        Console.WriteLine("Please enter more cash");
+                    }
+
+
                 }
             }
 
-            catch (Exception ex)
-           {
-
-                // break;
-            }
             return currentCash;
         }
         public static decimal GiveChange(decimal currentCash)
