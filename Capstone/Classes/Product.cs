@@ -10,24 +10,22 @@ namespace Capstone
 
         public string ProductName { get; set; }
 
-        public int Quantity { get; set; } = 0;
+        public int Quantity { get; }
 
         public decimal Price { get; set; }
 
         public string ProductType { get; set; }
-
-        public virtual string Slogan { get; }
 
         public Product()
         {
 
         }
 
-        public Product(string slotId, string productName, decimal price, string productType)
+        public Product(string slotId, string productName, string price, string productType)
         {
             this.SlotId = slotId;
             this.ProductName = productName;
-            this.Price = price;
+            this.Price = decimal.Parse(price);
             this.ProductType = productType;
         }
     }

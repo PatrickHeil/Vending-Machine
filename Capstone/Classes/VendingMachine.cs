@@ -8,9 +8,15 @@ namespace Capstone
     {
         public decimal Balance { get; }
 
-        public Dictionary<string, int> ProductAndQuantity { get; }
+        public Dictionary<Product, int> Inventory { get; }
+
+        public VendingMachine(Dictionary<Product, int> inventory, decimal balance)
+        {
+            this.Balance = balance;
+            this.Inventory = new Dictionary<Product, int>();
 
 
+        }
 
     }
 }

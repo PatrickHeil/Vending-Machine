@@ -8,6 +8,8 @@ namespace Capstone
     {
         static void Main(string[] args)
         {         
+            
+
             //Menu
 
             decimal currentCash = 14.70M;
