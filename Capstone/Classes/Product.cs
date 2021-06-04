@@ -14,6 +14,8 @@ namespace Capstone
 
         public string ProductType { get; set; }
 
+        public int Quantity { get; set; } = 5;
+
         public Product()
         {
 
@@ -25,6 +27,7 @@ namespace Capstone
             this.ProductName = productName;
             this.Price = decimal.Parse(price);
             this.ProductType = productType;
+
         }
     }
 }
