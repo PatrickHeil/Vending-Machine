@@ -15,8 +15,11 @@ namespace Capstone.Classes
         string fullPath = Path.GetFullPath("vendingmachine.csv");
         public Dictionary<Product, int> Inventory()
         {
-            string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
-            //change to relative path?
+
+            string currentDirectory = Environment.CurrentDirectory;
+            string relativeDirectory = @"..\..\..\..\vendingmachine.csv";
+            string fullPath = Path.Combine(currentDirectory, relativeDirectory);
+            
             Dictionary<Product, int> inventory = new Dictionary<Product, int>();
 
             try
