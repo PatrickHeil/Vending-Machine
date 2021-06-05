@@ -165,6 +165,7 @@ namespace Capstone
                                             {
                                                 Console.WriteLine("Please enter more cash");
                                                 Console.ReadLine();
+                                                break;
                                             }
                                         }
 
