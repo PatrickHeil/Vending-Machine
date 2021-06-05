@@ -10,6 +10,7 @@ namespace Capstone
         public Dictionary<Product, int> Inventory { get; set; }
         public VendingMachine()
         {
+
         }
         public VendingMachine(Dictionary<Product, int> inventory)
         {
