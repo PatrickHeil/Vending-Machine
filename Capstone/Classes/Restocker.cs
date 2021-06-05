@@ -12,14 +12,11 @@ namespace Capstone.Classes
         public Restocker()
         {
         }
-
+        string fullPath = Path.GetFullPath("vendingmachine.csv");
         public Dictionary<Product, int> Inventory()
         {
-            string directory = Environment.CurrentDirectory;
-            string manipulatedDirectory = $@"..\..\..\..\vendingmachine.csv";
-
-            string fullPath = Path.Combine(directory, manipulatedDirectory);
-
+            string fullPath = "C:\\Users\\Student\\git\\dotnet-capstone-1-team-4\\vendingmachine.csv";
+            //change to relative path?
             Dictionary<Product, int> inventory = new Dictionary<Product, int>();
 
             try
