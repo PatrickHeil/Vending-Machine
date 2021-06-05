@@ -9,21 +9,11 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-
             Restocker restocker = new Restocker();
             Dictionary<Product, int> inventory = restocker.Inventory();
-            //VendingMachine vendingMachine = new VendingMachine(inventory);
             LogKeeper log = new LogKeeper();
-
-
-
-
             //Menu
-
             decimal currentCash = 0M;
-
-            // while ()
-            // {
             bool main = true;
             bool main2 = true;
             while (main == true) //MAIN MENU
@@ -34,7 +24,6 @@ namespace Capstone
                 string userSelection = Console.ReadLine();
                 while (userSelection != "3")
                 {
-
                     if (userSelection == "1") //DISPLAY ITEMS
                     {
                         Console.Clear();
@@ -45,7 +34,6 @@ namespace Capstone
                                 Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} ${kvp.Key.Price} {kvp.Key.ProductType} quantity: {kvp.Value}");
                             }
                             else Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} ${kvp.Key.Price} {kvp.Key.ProductType} quantity: SOLD OUT");
-
                         }
                         Console.WriteLine();
                         Console.WriteLine("Press any key to return to main menu.");
@@ -62,7 +50,6 @@ namespace Capstone
                             Console.WriteLine("(1) Feed Money");
                             Console.WriteLine("(2) Select Product");
                             Console.WriteLine("(3) Finish Transaction");
-
                             Console.WriteLine("Your Current balance is: $" + currentCash);
                             string userSelection2 = Console.ReadLine();
                             while (userSelection2 != "3")
@@ -71,11 +58,9 @@ namespace Capstone
                                 {
                                     Console.Clear();
                                     Console.WriteLine("Please feed the machine money in increments of 1, 2, 5, or 10");
-
                                     string stringCurrentCash = Console.ReadLine();
                                     if (stringCurrentCash == "1" || stringCurrentCash == "2" || stringCurrentCash == "5" || stringCurrentCash == "10")
                                     {
-
                                         currentCash += decimal.Parse(stringCurrentCash);
                                         log.FeedWriter(stringCurrentCash, currentCash.ToString());
                                     }
@@ -91,7 +76,6 @@ namespace Capstone
                                 {
                                     Console.Clear();
                                     Console.WriteLine("Please choose a product from the following options by typing the slot ID");
-
                                     foreach (KeyValuePair<Product, int> kvp in inventory)
                                     {
                                         if (kvp.Value != 0)
@@ -101,7 +85,6 @@ namespace Capstone
                                         else Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} ${kvp.Key.Price} {kvp.Key.ProductType} quantity: SOLD OUT");
                                     }
                                     string slotIdPick = Console.ReadLine();
-
                                     try
                                     {
                                         foreach (KeyValuePair<Product, int> kvp in inventory)
@@ -119,56 +102,61 @@ namespace Capstone
                                                     {
                                                         //CHIP
                                                         Console.WriteLine();
+                                                        Console.WriteLine($"{kvp.Key.ProductName}: {kvp.Key.Price} your balance remaining is {currentCash}");
                                                         Console.WriteLine("Crunch Crunch, Yum!");
-                               
+                                                        Console.ReadLine();
+                                                        break;
+
                                                     }
                                                     else if (slotIdPick.ToUpper().Contains("B1") || slotIdPick.ToUpper().Contains("B2") || slotIdPick.ToUpper().Contains("B3") || slotIdPick.ToUpper().Contains("B4"))
-                                                    {    
+                                                    {
                                                         //CANDY
                                                         Console.WriteLine();
+                                                        Console.WriteLine($"{kvp.Key.ProductName}: {kvp.Key.Price} your balance remaining is {currentCash}");
                                                         Console.WriteLine("Munch Munch, Yum!");
-                                                     
+
                                                     }
                                                     else if (slotIdPick.ToUpper().Contains("C1") || slotIdPick.ToUpper().Contains("C2") || slotIdPick.ToUpper().Contains("C3") || slotIdPick.ToUpper().Contains("C4"))
                                                     {
                                                         //DRINK
                                                         Console.WriteLine();
+                                                        Console.WriteLine($"{kvp.Key.ProductName}: {kvp.Key.Price} your balance remaining is {currentCash}");
                                                         Console.WriteLine("Glug Glug, Yum!");
-                                                        
+
                                                     }
                                                     else if (slotIdPick.ToUpper().Contains("D1") || slotIdPick.ToUpper().Contains("D2") || slotIdPick.ToUpper().Contains("D3") || slotIdPick.ToUpper().Contains("D4"))
                                                     {
                                                         //GUM
                                                         Console.WriteLine();
+                                                        Console.WriteLine($"{kvp.Key.ProductName}: {kvp.Key.Price} your balance remaining is {currentCash}");
                                                         Console.WriteLine("Chew Chew, Yum!");
-                                                       
+
                                                     }
                                                     else Console.WriteLine("Please enter a valid selection.");
                                                     Console.ReadLine();
                                                 }
-                                            }
-                                            else if (kvp.Value == 0)
-                                            {
 
-                                                Console.WriteLine("SOLD OUT");
-                                                Console.ReadLine();
-                                                break;
-                                            }
-                                            else if (kvp.Key.Price > currentCash)
-                                            {
-                                                Console.WriteLine("Please enter more cash");
-                                                Console.ReadLine();
+                                                else if (kvp.Value < 1)
+                                                {
+
+                                                    Console.WriteLine("SOLD OUT");
+                                                    Console.Read();
+                                                    break;
+                                                }
+                                                else if (kvp.Key.Price > currentCash)
+                                                {
+                                                    Console.WriteLine("Please enter more cash");
+                                                    Console.ReadLine();
+                                                    break;
+                                                }
                                             }
                                         }
-
                                     }
                                     catch (Exception)
                                     {
                                         Console.WriteLine("Returning you to main menu.");
                                         break;
                                     }
-
-
                                 }
                                 break;
                             }
@@ -181,7 +169,6 @@ namespace Capstone
                                 decimal previousCash = currentCash;
                                 while (currentCash != 0)
                                 {
-
                                     if (currentCash >= .25M)
                                     {
                                         quarters = (int)(currentCash / .25M);
@@ -204,11 +191,9 @@ namespace Capstone
                                 main2 = false;
                                 break;
                             }
-
                         }
                         break;
                     }
-
                     else
                     {
                         Console.WriteLine("Invalid entry, please try again");
