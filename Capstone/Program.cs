@@ -93,7 +93,7 @@ namespace Capstone
                                         foreach (KeyValuePair<Product, int> kvp in inventory)
                                         {
 
-                                            if (slotIdPick == kvp.Key.SlotId)
+                                            if (slotIdPick.ToUpper() == kvp.Key.SlotId)
                                             {
 
                                                 if (kvp.Key.Price <= currentCash && kvp.Value > 0)
@@ -103,25 +103,25 @@ namespace Capstone
                                                     int currentCount = 0;
                                                     inventory.TryGetValue(kvp.Key, out currentCount);
                                                     inventory[kvp.Key] = currentCount - 1;
-                                                    if (slotIdPick.Contains("A"))
+                                                    if (slotIdPick.ToUpper().Contains("A"))
                                                     {
                                                         //CHIP
                                                         Console.WriteLine("Crunch Crunch, Yum!");
                                                         Console.ReadLine();
                                                     }
-                                                    else if (slotIdPick.Contains("B"))
+                                                    else if (slotIdPick.ToUpper().Contains("B"))
                                                     {
                                                         //CANDY 
                                                         Console.WriteLine("Munch Munch, Yum!");
                                                         Console.ReadLine();
                                                     }
-                                                    else if (slotIdPick.Contains("C"))
+                                                    else if (slotIdPick.ToUpper().Contains("C"))
                                                     {
                                                         //DRINK"Glug Glug, Yum!"
                                                         Console.WriteLine("Glug Glug, Yum!");
                                                         Console.ReadLine();
                                                     }
-                                                    else if (slotIdPick.Contains("D"))
+                                                    else if (slotIdPick.ToUpper().Contains("D"))
                                                     {
                                                         //GUM"Chew Chew, Yum!"
                                                         Console.WriteLine("Chew Chew, Yum!");
@@ -141,13 +141,12 @@ namespace Capstone
                                                     Console.WriteLine("Please enter more cash");
                                                 }
 
-
                                             }
-                                            else
-                                            {
-                                                Console.WriteLine("Invalid entry, please try again");
-                                                break;
-                                            }
+                                           // else
+                                           // {
+                                          //      Console.WriteLine("Invalid entry, please try again");
+                                              //  break;
+                                          // }
                                         }
                                     }
 
@@ -175,12 +174,12 @@ namespace Capstone
                                         quarters = (int)(currentCash / .25M);
                                         currentCash -= quarters * .25M;
                                     }
-                                    else if (currentCash > .10M && currentCash < .25M)
+                                    else if (currentCash >= .10M && currentCash < .25M)
                                     {
                                         dimes = (int)(currentCash / .10M);
                                         currentCash -= dimes * .10M;
                                     }
-                                    else if (currentCash > .05M && currentCash < .10M)
+                                    else if (currentCash >= .05M && currentCash < .10M)
                                     {
                                         nickels = (int)(currentCash / .05M);
                                         currentCash -= nickels * .05M;
