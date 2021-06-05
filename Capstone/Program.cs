@@ -12,7 +12,7 @@ namespace Capstone
 
             Restocker restocker = new Restocker();
             Dictionary<Product, int> inventory = restocker.Inventory();
-            VendingMachine vendingMachine = new VendingMachine(inventory);
+            //VendingMachine vendingMachine = new VendingMachine(inventory);
             LogKeeper log = new LogKeeper();
 
 
@@ -171,13 +171,14 @@ namespace Capstone
 
             foreach (KeyValuePair<Product, int> kvp in inventory)
             {
-                //int values = kvp.Value;
+
+                int values = kvp.Value;
                 foreach (KeyValuePair<Product, int> k in inventory)
                 {
                 
                 if (kvp.Value != 0)
                 {
-                    Console.WriteLine($"{k.Key.SlotId} {k.Key.ProductName} {k.Key.Price} {k.Key.ProductType} quantity: {k.Value}");
+                    Console.WriteLine($"{k.Key.SlotId} {k.Key.ProductName} {k.Key.Price} {k.Key.ProductType} quantity: {values}");
                 }
                 else Console.WriteLine($"{k.Key.SlotId} {k.Key.ProductName} {k.Key.Price} {k.Key.ProductType} quantity: SOLD OUT");
 
@@ -193,8 +194,9 @@ namespace Capstone
                         log.SaleWriter($"{kvp.Key.ProductName}", $"{kvp.Key.SlotId}", currentCash.ToString(), $"{currentCash - kvp.Key.Price}");
 
                         currentCash -= kvp.Key.Price;
-
-                        //kvp.Value--;
+                        
+                        values--;
+                        
                         //kvp.Value = values;
                         if (slotIdPick.ToUpper().Contains("A"))
                         {
@@ -203,6 +205,7 @@ namespace Capstone
 
                             Console.WriteLine("Crunch Crunch, Yum!");
                             Console.ReadLine();
+                            break;
                         }
                         else if (slotIdPick.ToUpper().Contains("B"))
                         {
@@ -219,6 +222,7 @@ namespace Capstone
                             Console.WriteLine();
                             Console.WriteLine("Munch Munch, Yum!");
                             Console.ReadLine();
+                            break;
                         }
                         else if (slotIdPick.ToUpper().Contains("C"))
                         {
@@ -242,6 +246,7 @@ namespace Capstone
                             //Console.WriteLine();
                             Console.WriteLine("Glug Glug, Yum!");
                             Console.ReadLine();
+                            break;
                         }
                         else if (slotIdPick.ToUpper().Contains("D"))
                         {
@@ -256,8 +261,9 @@ namespace Capstone
                             Console.WriteLine();
                             Console.WriteLine("Chew Chew, Yum!");
                             Console.ReadLine();
+                            break;
                         }
-
+                        return values;
 
                     }
                     else if (kvp.Value == 0)
@@ -269,6 +275,8 @@ namespace Capstone
                     else if (kvp.Key.Price > currentCash)
                     {
                         Console.WriteLine("Please enter more cash");
+                        Console.ReadLine();
+                        break;
                     }
 
 
