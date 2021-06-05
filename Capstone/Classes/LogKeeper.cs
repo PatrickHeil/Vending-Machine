@@ -12,8 +12,6 @@ namespace Capstone.Classes
 
         }
 
-        public DateTime DateTime { get; }
-
         public void SaleWriter(string productName, string slotId, string currentBalance, string balanceAfterPurchase)
         {
             string fileName = "Log.txt";
