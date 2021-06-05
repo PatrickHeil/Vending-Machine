@@ -46,7 +46,7 @@ namespace Capstone.Classes
             }
         }
 
-        public void ChangeWriter(string moneyRemaining)
+        public void ChangeWriter(string moneyRemaining, string balanceOfZero)
         {
             string fileName = "Log.txt";
             string dateTime = DateTime.Now.ToString();
@@ -54,7 +54,7 @@ namespace Capstone.Classes
             {
                 using (StreamWriter sw = new StreamWriter(fileName, true))
                 {
-                    sw.WriteLine($"{dateTime} GIVE CHANGE: ${moneyRemaining} $0.00");
+                    sw.WriteLine($"{dateTime} GIVE CHANGE: ${moneyRemaining} ${balanceOfZero}");
                 }
             }
             catch (Exception ex)
