@@ -10,6 +10,7 @@ namespace CapstoneTests
     [TestClass]
     public class RestockerTest
     {
+        
         public static Dictionary<Product,int> TestDictionary()
         {
             Product a1 = new Product("A1", "Potato Crisps", "3.05", "Chip");

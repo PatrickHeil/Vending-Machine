@@ -9,6 +9,23 @@ namespace Capstone
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public string ProductType { get; set; }
+        public override bool Equals(Object obj)
+        {
+            if (Object.ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (this.GetType() != obj.GetType())
+            {
+                return false;
+            }
+            Product example = (Product)obj;
+            return this.SlotId == example.SlotId;
+            return this.ProductName == example.ProductName;
+            return this.Price == example.Price;
+            return this.ProductType == example.ProductType;
+        }
         public Product()
         {
         }
