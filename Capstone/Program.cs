@@ -18,6 +18,10 @@ namespace Capstone
             bool main2 = true;
             while (main == true) //MAIN MENU
             {
+                Console.Clear();
+                Console.WriteLine(); 
+                Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
+                Console.WriteLine();
                 Console.WriteLine("(1) Display Vending Machine Items");
                 Console.WriteLine("(2) Purchase items");
                 Console.WriteLine("(3) Exit");
@@ -27,6 +31,9 @@ namespace Capstone
                     if (userSelection == "1") //DISPLAY ITEMS
                     {
                         Console.Clear();
+                        Console.WriteLine();
+                        Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
+                        Console.WriteLine();
                         foreach (KeyValuePair<Product, int> kvp in inventory)
                         {
                             if (kvp.Value != 0)
@@ -35,7 +42,6 @@ namespace Capstone
                             }
                             else Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} ${kvp.Key.Price} {kvp.Key.ProductType} quantity: SOLD OUT");
                         }
-                        Console.WriteLine();
                         Console.WriteLine("Press any key to return to main menu.");
                         Console.ReadLine();
                         Console.Clear();
@@ -47,9 +53,13 @@ namespace Capstone
                         while (main2 == true)
                         {
                             Console.Clear();
+                            Console.WriteLine();
+                            Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
+                            Console.WriteLine();
                             Console.WriteLine("(1) Feed Money");
                             Console.WriteLine("(2) Select Product");
                             Console.WriteLine("(3) Finish Transaction");
+                            Console.WriteLine();
                             Console.WriteLine("Your Current balance is: $" + currentCash);
                             string userSelection2 = Console.ReadLine();
                             while (userSelection2 != "3")
@@ -57,6 +67,9 @@ namespace Capstone
                                 if (userSelection2 == "1") //FEED MONEY
                                 {
                                     Console.Clear();
+                                    Console.WriteLine();
+                                    Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
+                                    Console.WriteLine();
                                     Console.WriteLine("Please feed the machine money in increments of 1, 2, 5, or 10");
                                     string stringCurrentCash = Console.ReadLine();
                                     if (stringCurrentCash == "1" || stringCurrentCash == "2" || stringCurrentCash == "5" || stringCurrentCash == "10")
@@ -66,8 +79,10 @@ namespace Capstone
                                     }
                                     else
                                     {
+                                        Console.WriteLine();
                                         Console.WriteLine("Please insert correct bill: $1, $2, $5, or $10.");
                                     }
+                                    Console.WriteLine();
                                     Console.WriteLine($"Your current balance is: ${currentCash}");
                                     Console.ReadLine();
                                     break;
@@ -75,7 +90,11 @@ namespace Capstone
                                 else if (userSelection2 == "2") //SELECT PRODUCT
                                 {
                                     Console.Clear();
+                                    Console.WriteLine();
+                                    Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
+                                    Console.WriteLine();
                                     Console.WriteLine("Please choose a product from the following options by typing the slot ID");
+                                    Console.WriteLine();
                                     foreach (KeyValuePair<Product, int> kvp in inventory)
                                     {
                                         if (kvp.Value != 0)
@@ -141,7 +160,7 @@ namespace Capstone
                                                 {
 
                                                     Console.WriteLine("SOLD OUT");
-                                                    Console.Read();
+                                                    Console.ReadLine();
                                                     break;
                                                 }
                                                 else if (kvp.Key.Price > currentCash)
@@ -187,6 +206,9 @@ namespace Capstone
                                     }
                                     log.ChangeWriter(previousCash.ToString(), currentCash.ToString()); //WRITE TO LOG
                                 }
+                                Console.WriteLine();
+                                Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
+                                Console.WriteLine();
                                 Console.WriteLine($"Your change will be returned in {quarters} quarters, {dimes} dimes, and {nickels} nickles."); //RETURN CHANGE
                                 Console.ReadLine();
                                 main2 = false;
@@ -332,35 +354,6 @@ namespace Capstone
 //            Console.WriteLine("(1) Display Vending Machine Items");
 //            Console.WriteLine("(2) Purchase items");
 //            Console.WriteLine("(3) Exit\n");
-//            //Console.WriteLine("|############################################|");
-//            //Console.WriteLine("|#|                           |##|````````|##|");
-//            //Console.WriteLine("|#|  =====  ..--''`  |~~``|   |##|Umbrella|##|");
-//            //Console.WriteLine(@"|#|  |   |  \     |  :    |   |##|  Corp  |##|");
-//            //Console.WriteLine("|#|  |___|   /___ |  | ___|   |##| Vendo- |##|");
-//            //Console.WriteLine(@"|#|  /=__\  ./.__\   |/,__\   |##| Matic  |##|");
-//            //Console.WriteLine(@"|#|  \__//   \__//    \__//   |##|__800___|##|");
-//            //Console.WriteLine("|#|===========================|##############|");
-//            //Console.WriteLine("|#|```````````````````````````|##############|");
-//            //Console.WriteLine("|#| =.._      +++     //////  |##############|");
-//            //Console.WriteLine(@"|#| \/  \     | |     \    \  |#|`````````|##|");
-//            //Console.WriteLine(@"|#|  \___\    |_|     /___ /  |#| _______ |##|");
-//            //Console.WriteLine(@"|#|  / __\\  /|_|\   // __\   |#| |1|2|3| |##|");
-//            //Console.WriteLine(@"|#|  \__//-  \|_//   -\__//   |#| |4|5|6| |##|");
-//            //Console.WriteLine("|#|===========================|#| |7|8|9| |##|");
-//            //Console.WriteLine("|#|```````````````````````````|#| ``````` |##|");
-//            //Console.WriteLine("|#| ..--    ______   .--._.   |#|[=======]|##|");
-//            //Console.WriteLine(@"|#| \   \   |    |   |    |   |#|  _   _  |##|");
-//            //Console.WriteLine(@"|#|  \___\  : ___:   | ___|   |#| ||| ( ) |##|");
-//            //Console.WriteLine(@"|#|  / __\  |/ __\   // __\   |#| |||  `  |##|");
-//            //Console.WriteLine(@"|#|  \__//   \__//  /_\__//   |#|  ~      |##|");
-//            //Console.WriteLine("|#|===========================|#|_________|##|");
-//            //Console.WriteLine("|#|```````````````````````````|##############|");
-//            //Console.WriteLine("|############################################|");
-//            //Console.WriteLine("|#|||||||||||||||||||||||||||||####```````###|");
-//            //Console.WriteLine(@"|#||||||||||||PUSH|||||||||||||####\|||||/###|");
-//            //Console.WriteLine("|############################################|");
-//            //Console.WriteLine(@"\\\\\\\\\\\\\\\\\\\\\\///////////////////////");
-//            //Console.WriteLine(" |________________________________|UCVM|_____|");
 
 //        }
 //        public static void ListOfProducts()
@@ -434,8 +427,6 @@ namespace Capstone
 //                            if (slotIdPick.ToUpper().Contains("A"))
 //                            {
 //                                Console.Clear();
-
-
 //                                Console.WriteLine("Crunch Crunch, Yum!");
 //                                Console.ReadLine();
 //                                break;
@@ -443,16 +434,6 @@ namespace Capstone
 //                            else if (slotIdPick.ToUpper().Contains("B"))
 //                            {
 //                                Console.Clear();
-
-//                                //Console.WriteLine(@"    ___ ___  ___ ___  ___.-------------- -.");
-//                                //Console.WriteLine(@" .'\__\'\__\'\__\'\__\'\__,`   .  ____ ___ \");
-//                                //Console.WriteLine(@" |\/ __\/ __\/ __\/ __\/ _:\   |`.  \  \___ \");
-//                                //Console.WriteLine(@" \\'\__\'\__\'\__\'\__\'\_`.__|''`. \  \___ \");
-//                                //Console.WriteLine(@" \\/ __\/ __\/ __\/ __\/ __:                \");
-//                                //Console.WriteLine(@" \\'\__\'\__\'\__\ \__\'\_;-----------------`");
-//                                //Console.WriteLine(@" \\/   \/   \/   \/   \/  :                 |");
-//                                //Console.WriteLine(@" \| ______________________; ________________|");
-//                                //Console.WriteLine();
 //                                Console.WriteLine("Munch Munch, Yum!");
 //                                Console.ReadLine();
 //                                break;
@@ -460,23 +441,6 @@ namespace Capstone
 //                            else if (slotIdPick.ToUpper().Contains("C"))
 //                            {
 //                                Console.Clear();
-//                                //Console.WriteLine(@"           .e$.                           z$$e.d$$$.      z$b   z");
-//                                //Console.WriteLine(@"          d$' .d                       .$$''d'F ^ *$$$e  z$' $ .$'");
-//                                //Console.WriteLine(@"        e$P    $%                    d$P .'  F    '$$'d$  .e$'");
-//                                //Console.WriteLine(@"       $$F                         .$$'  F  J       '$$z$$$'");
-//                                //Console.WriteLine(@"     .$$'     .$'3 .$''  .$P $$  $$ 4$$ $  4'     $$  .");
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();     
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
-//                                //Console.WriteLine();
 //                                Console.WriteLine("Glug Glug, Yum!");
 //                                Console.ReadLine();
 //                                break;
@@ -484,14 +448,6 @@ namespace Capstone
 //                            else if (slotIdPick.ToUpper().Contains("D"))
 //                            {
 //                                Console.Clear();
-//                                //Console.WriteLine(@"                      ____");
-//                                //Console.WriteLine(@"          ___       .' /:::.      ___");
-//                                //Console.WriteLine(@"          \  ' -.  / (:::-' \  .-'  /");
-//                                //Console.WriteLine(@"           >_-=.\/:\__\/__   \/.=-_<");
-//                                //Console.WriteLine(@"           > -= '/\::::/\:::\/\'=- <");
-//                                //Console.WriteLine(@"          / __.-'  \: :' )::/  '-.__\");
-//                                //Console.WriteLine(@"                    '.__/::'");
-//                                Console.WriteLine();
 //                                Console.WriteLine("Chew Chew, Yum!");
 //                                Console.ReadLine();
 //                                break;
