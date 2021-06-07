@@ -42,6 +42,7 @@ namespace Capstone
                             }
                             else Console.WriteLine($"{kvp.Key.SlotId} {kvp.Key.ProductName} ${kvp.Key.Price} {kvp.Key.ProductType} quantity: SOLD OUT");
                         }
+                        Console.WriteLine();
                         Console.WriteLine("Press any key to return to main menu.");
                         Console.ReadLine();
                         Console.Clear();
@@ -94,6 +95,7 @@ namespace Capstone
                                     Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
                                     Console.WriteLine();
                                     Console.WriteLine("Please choose a product from the following options by typing the slot ID");
+                                    Console.WriteLine($"Your current balance is: ${currentCash}");
                                     Console.WriteLine();
                                     foreach (KeyValuePair<Product, int> kvp in inventory)
                                     {
@@ -121,7 +123,7 @@ namespace Capstone
                                                     {
                                                         //CHIP
                                                         Console.WriteLine();
-                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price} your balance remaining is {currentCash}");
+                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
                                                         Console.WriteLine();
                                                         Console.WriteLine("Crunch Crunch, Yum!");
                                                     }
@@ -129,16 +131,16 @@ namespace Capstone
                                                     {
                                                         //CANDY
                                                         Console.WriteLine();
-                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price} your balance remaining is {currentCash}");
+                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
                                                         Console.WriteLine();
                                                         Console.WriteLine("Munch Munch, Yum!");
-                                                       
+
                                                     }
                                                     else if (slotIdPick.ToUpper().Contains("C1") || slotIdPick.ToUpper().Contains("C2") || slotIdPick.ToUpper().Contains("C3") || slotIdPick.ToUpper().Contains("C4"))
                                                     {
                                                         //DRINK
                                                         Console.WriteLine();
-                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price} your balance remaining is {currentCash}");
+                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
                                                         Console.WriteLine();
                                                         Console.WriteLine("Glug Glug, Yum!");
 
@@ -147,13 +149,10 @@ namespace Capstone
                                                     {
                                                         //GUM
                                                         Console.WriteLine();
-                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price} your balance remaining is {currentCash}");
+                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
                                                         Console.WriteLine();
                                                         Console.WriteLine("Chew Chew, Yum!");
-                                                        
                                                     }
-                                                    else Console.WriteLine("Please enter a valid selection.");
-                                                    Console.ReadLine();
                                                 }
 
                                                 else if (kvp.Value < 1)
@@ -169,7 +168,12 @@ namespace Capstone
                                                     Console.ReadLine();
                                                     break;
                                                 }
+                                                
                                             }
+                                            else Console.WriteLine();
+                                            Console.WriteLine("Please enter a valid selection.");
+                                            Console.ReadLine();
+                                            break;
                                         }
                                     }
                                     catch (Exception) //JUST IN CASE:
@@ -219,7 +223,7 @@ namespace Capstone
                     }
                     else
                     {
-                        Console.WriteLine("Invalid entry, please try again");
+                        Console.WriteLine("Invalid entry, please try again.");
                         Console.ReadLine();
                         break;
                     }
