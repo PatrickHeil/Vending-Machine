@@ -19,7 +19,7 @@ namespace Capstone
             while (main == true) //MAIN MENU
             {
                 Console.Clear();
-                Console.WriteLine(); 
+                Console.WriteLine();
                 Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
                 Console.WriteLine();
                 Console.WriteLine("(1) Display Vending Machine Items");
@@ -63,6 +63,7 @@ namespace Capstone
                             Console.WriteLine();
                             Console.WriteLine("Your Current balance is: $" + currentCash);
                             string userSelection2 = Console.ReadLine();
+                            
                             while (userSelection2 != "3")
                             {
                                 if (userSelection2 == "1") //FEED MONEY
@@ -110,54 +111,63 @@ namespace Capstone
                                     {
                                         foreach (KeyValuePair<Product, int> kvp in inventory)
                                         {
-                                            if (slotIdPick.ToUpper() == kvp.Key.SlotId)
+                                            bool aSelect = (slotIdPick.ToUpper().Contains("A1") || slotIdPick.ToUpper().Contains("A2") || slotIdPick.ToUpper().Contains("A3") || slotIdPick.ToUpper().Contains("A4"));
+                                            bool bSelect = (slotIdPick.ToUpper().Contains("B1") || slotIdPick.ToUpper().Contains("B2") || slotIdPick.ToUpper().Contains("B3") || slotIdPick.ToUpper().Contains("B4"));
+                                            bool cSelect = (slotIdPick.ToUpper().Contains("C1") || slotIdPick.ToUpper().Contains("C2") || slotIdPick.ToUpper().Contains("C3") || slotIdPick.ToUpper().Contains("C4"));
+                                            bool dSelect = (slotIdPick.ToUpper().Contains("D1") || slotIdPick.ToUpper().Contains("D2") || slotIdPick.ToUpper().Contains("D3") || slotIdPick.ToUpper().Contains("D4"));
+                                            
+                                            if (aSelect || bSelect || cSelect || dSelect)
                                             {
-                                                if (kvp.Key.Price <= currentCash && kvp.Value > 0)
-                                                {   //WRITE TO LOG
-                                                    log.SaleWriter($"{kvp.Key.ProductName}", $"{kvp.Key.SlotId}", currentCash.ToString(), $"{currentCash - kvp.Key.Price}");
-                                                    currentCash -= kvp.Key.Price;
-                                                    int currentCount = 0;
-                                                    inventory.TryGetValue(kvp.Key, out currentCount);
-                                                    inventory[kvp.Key] = currentCount - 1;
-                                                    if (slotIdPick.ToUpper().Contains("A1") || slotIdPick.ToUpper().Contains("A2") || slotIdPick.ToUpper().Contains("A3") || slotIdPick.ToUpper().Contains("A4"))
-                                                    {
-                                                        //CHIP
-                                                        Console.WriteLine();
-                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
-                                                        Console.WriteLine();
-                                                        Console.WriteLine("Crunch Crunch, Yum!");
-                                                    }
-                                                    else if (slotIdPick.ToUpper().Contains("B1") || slotIdPick.ToUpper().Contains("B2") || slotIdPick.ToUpper().Contains("B3") || slotIdPick.ToUpper().Contains("B4"))
-                                                    {
-                                                        //CANDY
-                                                        Console.WriteLine();
-                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
-                                                        Console.WriteLine();
-                                                        Console.WriteLine("Munch Munch, Yum!");
-
-                                                    }
-                                                    else if (slotIdPick.ToUpper().Contains("C1") || slotIdPick.ToUpper().Contains("C2") || slotIdPick.ToUpper().Contains("C3") || slotIdPick.ToUpper().Contains("C4"))
-                                                    {
-                                                        //DRINK
-                                                        Console.WriteLine();
-                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
-                                                        Console.WriteLine();
-                                                        Console.WriteLine("Glug Glug, Yum!");
-
-                                                    }
-                                                    else if (slotIdPick.ToUpper().Contains("D1") || slotIdPick.ToUpper().Contains("D2") || slotIdPick.ToUpper().Contains("D3") || slotIdPick.ToUpper().Contains("D4"))
-                                                    {
-                                                        //GUM
-                                                        Console.WriteLine();
-                                                        Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
-                                                        Console.WriteLine();
-                                                        Console.WriteLine("Chew Chew, Yum!");
-                                                    }
-                                                }
-
-                                                else if (kvp.Value < 1)
+                                                if (slotIdPick.ToUpper() == kvp.Key.SlotId)
                                                 {
 
+
+                                                    if (kvp.Key.Price <= currentCash && kvp.Value > 0)
+                                                    {   //WRITE TO LOG
+                                                        log.SaleWriter($"{kvp.Key.ProductName}", $"{kvp.Key.SlotId}", currentCash.ToString(), $"{currentCash - kvp.Key.Price}");
+                                                        currentCash -= kvp.Key.Price;
+                                                        int currentCount = 0;
+                                                        inventory.TryGetValue(kvp.Key, out currentCount);
+                                                        inventory[kvp.Key] = currentCount - 1;
+
+                                                        if (aSelect)
+                                                        {
+                                                            //CHIP
+                                                            Console.WriteLine();
+                                                            Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
+                                                            Console.WriteLine();
+                                                            Console.WriteLine("Crunch Crunch, Yum!");
+                                                        }
+                                                        else if (bSelect)
+                                                        {
+                                                            //CANDY
+                                                            Console.WriteLine();
+                                                            Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
+                                                            Console.WriteLine();
+                                                            Console.WriteLine("Munch Munch, Yum!");
+                                                        }
+                                                        else if (cSelect)
+                                                        {
+                                                            //DRINK
+                                                            Console.WriteLine();
+                                                            Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
+                                                            Console.WriteLine();
+                                                            Console.WriteLine("Glug Glug, Yum!");
+                                                        }
+                                                        else if (dSelect)
+                                                        {
+                                                            //GUM
+                                                            Console.WriteLine();
+                                                            Console.WriteLine($"{kvp.Key.ProductName}: ${kvp.Key.Price}. Your balance remaining is {currentCash}");
+                                                            Console.WriteLine();
+                                                            Console.WriteLine("Chew Chew, Yum!");
+                                                        }
+                                                        Console.ReadLine();
+                                                    
+                                                    }
+                                                }
+                                                else if (kvp.Value < 1)
+                                                {
                                                     Console.WriteLine("SOLD OUT");
                                                     Console.ReadLine();
                                                     break;
@@ -168,17 +178,21 @@ namespace Capstone
                                                     Console.ReadLine();
                                                     break;
                                                 }
-                                                
+
+
                                             }
-                                            else Console.WriteLine();
-                                            Console.WriteLine("Please enter a valid selection.");
-                                            Console.ReadLine();
-                                            break;
+                                            if (!aSelect && !bSelect && !cSelect && !dSelect)
+                                            {
+                                                Console.WriteLine("Please enter a valid selection.");
+                                                Console.ReadLine();
+                                                break;
+                                            }
+
                                         }
                                     }
                                     catch (Exception) //JUST IN CASE:
                                     {
-                                        Console.WriteLine("Returning you to main menu.");
+                                        Console.WriteLine("Returning you to Purchase Menu.");
                                         break;
                                     }
                                 }
@@ -208,8 +222,8 @@ namespace Capstone
                                         nickels = (int)(currentCash / .05M);
                                         currentCash -= nickels * .05M;
                                     }
-                                    log.ChangeWriter(previousCash.ToString(), currentCash.ToString()); //WRITE TO LOG
                                 }
+                                log.ChangeWriter(previousCash.ToString(), currentCash.ToString()); //WRITE TO LOG
                                 Console.WriteLine();
                                 Console.WriteLine("+++ Umbrella Corp +++ VEND-O-MATIC 800 +++");
                                 Console.WriteLine();
